@@ -1,9 +1,9 @@
 {
-    "taskDefinitionArn": "arn:aws:ecs:eu-north-1:974142680250:task-definition/springboot-app-task-definition:6",
+    "taskDefinitionArn": "arn:aws:ecs:us-east-1:600627340343:task-definition/springboot-task:1",
     "containerDefinitions": [
         {
             "name": "springboot-example",
-            "image": "974142680250.dkr.ecr.eu-north-1.amazonaws.com/springboot-example:latest",
+            "image": "600627340343.dkr.ecr.us-east-1.amazonaws.com/spring-boot-example",
             "cpu": 0,
             "portMappings": [
                 {
@@ -23,20 +23,23 @@
             "logConfiguration": {
                 "logDriver": "awslogs",
                 "options": {
+                    "awslogs-group": "/ecs/springboot-task",
+                    "mode": "non-blocking",
                     "awslogs-create-group": "true",
-                    "awslogs-group": "/ecs/springboot-app-task-definition",
-                    "awslogs-region": "eu-north-1",
+                    "max-buffer-size": "25m",
+                    "awslogs-region": "us-east-1",
                     "awslogs-stream-prefix": "ecs"
                 },
                 "secretOptions": []
-            }
+            },
+            "systemControls": []
         }
     ],
-    "family": "springboot-app-task-definition",
-    "taskRoleArn": "arn:aws:iam::974142680250:role/ecsTaskExecutionRole",
-    "executionRoleArn": "arn:aws:iam::974142680250:role/ecsTaskExecutionRole",
+    "family": "springboot-task",
+    "taskRoleArn": "arn:aws:iam::600627340343:role/ecsTaskExecutionRole",
+    "executionRoleArn": "arn:aws:iam::600627340343:role/ecsTaskExecutionRole",
     "networkMode": "awsvpc",
-    "revision": 6,
+    "revision": 1,
     "volumes": [],
     "status": "ACTIVE",
     "requiresAttributes": [
@@ -51,6 +54,9 @@
         },
         {
             "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.28"
         },
         {
             "name": "com.amazonaws.ecs.capability.task-iam-role"
@@ -74,7 +80,7 @@
         "FARGATE"
     ],
     "requiresCompatibilities": [
-        "FARGATE"
+        "EC2"
     ],
     "cpu": "1024",
     "memory": "3072",
@@ -82,7 +88,8 @@
         "cpuArchitecture": "X86_64",
         "operatingSystemFamily": "LINUX"
     },
-    "registeredAt": "2023-12-08T19:03:51.274Z",
-    "registeredBy": "arn:aws:iam::974142680250:user/integration-ninjas",
+    "registeredAt": "2025-06-04T13:38:45.626Z",
+    "registeredBy": "arn:aws:iam::600627340343:user/Krishna",
+    "enableFaultInjection": false,
     "tags": []
 }
